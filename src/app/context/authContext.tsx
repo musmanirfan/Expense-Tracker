@@ -63,15 +63,17 @@ export default function AuthContextProvider({ children }: AuthContextProviderTyp
                     // console.log("start");
                     (async () => {
                         try {
-                            console.log("Fetching user data for UID:", uid);
+                            console.log("Fetching user data for UID:", auth.currentUser?.uid);
                             const userDoc = doc(db, "users", uid);
                             const docSnap = await getDoc(userDoc);
-                            console.log(docSnap?.data());
-                            
+                            console.log(docSnap.exists());
+
+                            // console.log((await getDoc(userDoc)).data());
+
                             if (docSnap?.exists()) {
                                 const fetchedUserName = docSnap.data().user_name;
                                 setUserName(fetchedUserName);
-                                console.log(fetchedUserName);
+                                console.log(userName);
 
                                 // console.log(fetchedUserName);
                             } else {

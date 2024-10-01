@@ -22,6 +22,7 @@ import { app } from "@/app/firebase/firebaseConfig"; // Firebase config import
 import { useAuthContext } from "@/app/context/authContext";
 import Header from "./header"; // Import Header Component
 import { Delete } from "@mui/icons-material";
+import { Bounce, toast } from "react-toastify";
 
 export default function ShowExpenses() {
     const { userName } = useAuthContext()!;
@@ -107,11 +108,11 @@ export default function ShowExpenses() {
     let readExpenseRealtime: Unsubscribe;
 
     const fetchExpenseRealtime = () => {
-        let collectionRef = collection(db, "expenses");
-        let currentUserUID = auth.currentUser?.uid;
+        const collectionRef = collection(db, "expenses");
+        const currentUserUID = auth.currentUser?.uid;
         if (!currentUserUID) return;
 
-        let q = query(collectionRef, where("uid", "==", currentUserUID));
+        const q = query(collectionRef, where("uid", "==", currentUserUID));
 
         // Reset the state before setting new values
         setAllExpenses([]);
@@ -159,7 +160,7 @@ export default function ShowExpenses() {
 
     // useEffect to fetch expenses when the component mounts
     useEffect(() => {
-        let detachOnAuthListiner = onAuthStateChanged(auth, (user) => {
+        const detachOnAuthListiner = onAuthStateChanged(auth, (user) => {
             if (user) {
                 fetchExpenseRealtime();
             }
@@ -188,6 +189,17 @@ export default function ShowExpenses() {
             );
 
             console.log("Expense deleted successfully.");
+            toast.success("Expense Delete Successfully", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
         } catch (error) {
             console.log("Error deleting expense:", error);
         }
@@ -197,7 +209,7 @@ export default function ShowExpenses() {
     return (
         <div>
             {/* Header */}
-            <Header userName={userName} signout={signout} onAddExpenseClick={handleAddExpenseClick} />
+            <Header signout={signout} onAddExpenseClick={handleAddExpenseClick} />
 
             {/* Modal */}
             {showModal && (

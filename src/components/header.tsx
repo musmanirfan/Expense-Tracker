@@ -1,12 +1,13 @@
+import { useAuthContext } from '@/app/context/authContext';
 import React from 'react'
 
 interface HeaderProps {
-    userName: string;
     signout: () => void;
     onAddExpenseClick: () => void;
 }
 
-export default function Header({ userName, signout, onAddExpenseClick }: HeaderProps) {
+export default function Header({ signout, onAddExpenseClick }: HeaderProps) {
+    const { userName } = useAuthContext()!;
     return (
         <div className="flex justify-between px-10 py-4 bg-green-100 items-center">
             <h1 className="text-xl font-bold">Hello {userName}</h1>
