@@ -19,7 +19,6 @@ import {
     onSnapshot,
 } from "firebase/firestore";
 import { app } from "@/app/firebase/firebaseConfig"; // Firebase config import
-import { useAuthContext } from "@/app/context/authContext";
 import Header from "./header"; // Import Header Component
 import { Delete } from "@mui/icons-material";
 import { Bounce, toast } from "react-toastify";
