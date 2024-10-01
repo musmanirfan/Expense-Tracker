@@ -25,7 +25,6 @@ import { Delete } from "@mui/icons-material";
 import { Bounce, toast } from "react-toastify";
 
 export default function ShowExpenses() {
-    const { userName } = useAuthContext()!;
     const auth = getAuth(app);
     const db = getFirestore(app);
 
