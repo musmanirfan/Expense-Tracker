@@ -280,7 +280,7 @@ export default function ShowExpenses() {
                                     type="submit"
                                     className="px-4 py-2 bg-blue-500 text-white rounded"
                                 >
-                                    Add Expense
+                                    Save Expense
                                 </button>
                             </div>
                         </form>
