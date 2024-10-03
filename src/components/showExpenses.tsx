@@ -20,7 +20,7 @@ import {
 } from "firebase/firestore";
 import { app } from "@/app/firebase/firebaseConfig"; // Firebase config import
 import Header from "./header"; // Import Header Component
-import { Delete } from "@mui/icons-material";
+import { Delete,Edit } from "@mui/icons-material";
 import { Bounce, toast } from "react-toastify";
 
 export default function ShowExpenses() {
@@ -353,6 +353,7 @@ export default function ShowExpenses() {
                                                 </td>
                                             ))}
                                             <td onClick={() => handleDeleteExpense(expense?.id)}>
+                                                <Edit />
                                                 <Delete className="cursor-pointer"/>
                                             </td>
                                         </tr>
