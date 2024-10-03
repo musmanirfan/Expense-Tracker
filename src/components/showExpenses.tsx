@@ -294,13 +294,13 @@ export default function ShowExpenses() {
                     <div>
                         <label className="mr-2 font-semibold">Filter by Category:</label>
                         <select
-                            className="border border-gray-300 p-2 rounded"
+                            className="border border-gray-300 p-2 rounded cursor-pointer"
                             value={selectedCategory}
                             onChange={handleCategoryChange}
                         >
                             <option value="">All Categories</option>
                             {categories.map((category) => (
-                                <option key={category} value={category}>
+                                <option className="!cursor-pointer" key={category} value={category}>
                                     {category}
                                 </option>
                             ))}
@@ -353,7 +353,7 @@ export default function ShowExpenses() {
                                                 </td>
                                             ))}
                                             <td onClick={() => handleDeleteExpense(expense?.id)}>
-                                                <Delete />
+                                                <Delete className="cursor-pointer"/>
                                             </td>
                                         </tr>
                                     ))}
